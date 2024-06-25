@@ -1,5 +1,6 @@
 import React, { PropsWithChildren } from 'react'
 import Sidebar from './_components/Sidebar'
+import Header from './_components/Header'
 
 const layout = ({children}: PropsWithChildren) => {
   return (
@@ -8,6 +9,7 @@ const layout = ({children}: PropsWithChildren) => {
         <Sidebar/>
       </div>
         <div className='md:ml-64'>
+          <Header/>
         {children}
       </div>
     </div>
