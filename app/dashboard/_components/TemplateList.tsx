@@ -42,7 +42,7 @@ const TemplateList = ({userSearchInput}:{userSearchInput?: string})=> {
   return (
     <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 p-10'>
         {templateList.map((item:_Template,index:number)=>(
-            <TemplateCard {...item} />
+            <TemplateCard {...item} key={index}/>
         ))}
     </div>
   )
