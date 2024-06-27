@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/lib/providers";
 
 const inter = Inter({ subsets: ["latin"] });
 const ubuntu = Ubuntu({weight: ["700", "500", "400"], subsets: ["latin"] })
@@ -17,7 +18,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <AuthProvider >
       <body className={ubuntu.className}>{children}</body>
+      
+      </AuthProvider >
     </html>
   );
 }
