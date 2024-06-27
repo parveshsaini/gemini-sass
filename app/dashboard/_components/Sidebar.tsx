@@ -4,6 +4,7 @@ import React from 'react'
 import { FileClock, Home, WalletCards } from 'lucide-react'
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import Usage from './Usage';
 
 const Sidebar = () => {
   const MenuList=[
@@ -28,7 +29,7 @@ const Sidebar = () => {
   const path=usePathname();
 
   return (
-  <div className='h-screen relative p-5 shadow-sm border bg-white'>
+  <div className='h-screen relative p-4 shadow-sm border bg-white'>
       <div className='flex justify-center'>
       <h1 className='text-3xl font-bold cursor-pointer'>Cont<span className='text-primary'>Gen</span> ✏️</h1>
       </div>
@@ -47,9 +48,9 @@ const Sidebar = () => {
               </Link>
           ))}
       </div>
-      {/* <div className='absolute bottom-10 left-0 w-full'>
-          <UsageTrack/>
-      </div> */}
+      <div className='absolute bottom-2 left-0 w-full'>
+          <Usage/>
+      </div>
   </div>
   )
   }

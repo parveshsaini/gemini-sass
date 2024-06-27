@@ -2,7 +2,7 @@
 
 import { ArrowLeft } from 'lucide-react'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import FormSection from '../_components/FormSection'
 import OutputSection from '../_components/OutputSection'
 import { Button } from '@/components/ui/button'
@@ -14,6 +14,7 @@ import prisma from '@/prisma/client'
 import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { UsageContext } from '@/providers/UsageProvider'
 
 const CreateNewContent = ({params}: {params: {slug: string}}) => {
     const selectedTemplate:_Template | undefined = Templates?.find((item)=>item.slug== params['slug']);
@@ -21,6 +22,7 @@ const CreateNewContent = ({params}: {params: {slug: string}}) => {
     const [aiOutput,setAiOutput]=useState<string>('');
     const router=useRouter();
     const { data: session, status } = useSession()
+    const {totalUsage,setTotalUsage}=useContext(UsageContext)
 
     const GenerateAIContent=async(formData:any)=>{
         setLoading(true);
@@ -35,7 +37,7 @@ const CreateNewContent = ({params}: {params: {slug: string}}) => {
                 templateSlug: selectedTemplate?.slug,
                 aiResponse: result?.response.text(),
             })
-            toast.success('Saved Successfully');
+            setTotalUsage(totalUsage+result?.response.text().split(' ').length);
             setLoading(false);
         } catch (error) {
             console.log(error);
