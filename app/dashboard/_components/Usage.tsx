@@ -5,6 +5,7 @@ import { UsageContext } from "@/providers/UsageProvider";
 import { Button } from "@/components/ui/button";
 import { useSession } from "next-auth/react";
 import { UserSubscriptionContext } from "@/providers/UserSubscription";
+import Link from "next/link";
 
 const Usage = () => {
   const { totalUsage, setTotalUsage } = useContext(UsageContext);
@@ -61,7 +62,8 @@ const Usage = () => {
         </h2>
       </div>
       <Button variant={"secondary"} className="w-full my-3 text-primary">
-        Upgrade
+        <Link href={'/dashboard/billing'}>Upgrade</Link>
+        
       </Button>
     </div>
   );

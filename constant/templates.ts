@@ -90,7 +90,7 @@ export const Templates = [
         aiPrompt: 'Generate Youtube description with emoji under 4-5 lines based on topic and outline in rich text editor format',
         form: [
             {
-                label: 'Enter your blog topic/title',
+                label: 'Enter your video topic/title',
                 field: 'input',
                 name: 'topic',
                 required:true
