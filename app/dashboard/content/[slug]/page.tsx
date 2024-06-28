@@ -15,6 +15,7 @@ import { useSession } from 'next-auth/react'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { UsageContext } from '@/providers/UsageProvider'
+import { UserSubscriptionContext } from '@/providers/UserSubscription'
 
 const CreateNewContent = ({params}: {params: {slug: string}}) => {
     const selectedTemplate:_Template | undefined = Templates?.find((item)=>item.slug== params['slug']);
@@ -23,8 +24,21 @@ const CreateNewContent = ({params}: {params: {slug: string}}) => {
     const router=useRouter();
     const { data: session, status } = useSession()
     const {totalUsage,setTotalUsage}=useContext(UsageContext)
+    const {userSubscription, setUserSubscription}= useContext(UserSubscriptionContext)
 
     const GenerateAIContent=async(formData:any)=>{
+        if(!userSubscription && totalUsage>10000){
+            toast.error('Usage limit reached');
+            router.push('/dashboard/billing')
+            return
+        }
+
+        if(userSubscription && totalUsage>50000){
+            toast.error('Usage limit reached');
+            router.push('/dashboard/billing')
+            return
+        }
+
         setLoading(true);
         const SelectedPrompt=selectedTemplate?.aiPrompt;
         const FinalAIPrompt=JSON.stringify(formData)+", "+SelectedPrompt;

@@ -79,9 +79,9 @@ model AIOutput {
 
 model UserSubscription {
   id        Int     @id @default(autoincrement())
-  email     String
+  email     String  @unique
   userName  String
   active    Boolean
   paymentId String
-  joinDate  String
+  joinDate  DateTime @default(now())
 }

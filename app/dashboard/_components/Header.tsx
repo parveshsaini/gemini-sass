@@ -11,25 +11,30 @@ import { Button } from '@/components/ui/button'
 import { Search } from 'lucide-react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext } from 'react'
+import { UserSubscriptionContext } from '@/providers/UserSubscription';
 
 const Header= ()=> {
   const { data: session, status } = useSession()
+  const {userSubscription}= useContext(UserSubscriptionContext)
 
   return (
     <div className='p-5 shadow-sm border-b-2 bg-white flex justify-between items-center'>
       <div className='flex gap-2 items-center
-       p-2 border rounded-md max-w-lg bg-white'>
+         max-w-lg bg-white'>
         {/* <Search/>
         <input type='text' placeholder='Search...'
         className='outline-none'
         /> */}
-        {status==="authenticated" ? <h1>{session?.user?.name}</h1> : <h1>Not Authenticated</h1>}
+        {status==="authenticated" ? <h1 className='text-2xl font-bold'>Welcome, {session?.user?.name}!</h1 > : <h1 className='text-2xl font-bold'>Please Login to get Started</h1>}
 
       </div>
       <div className='flex gap-5 items-center'>
-        <h2 className='bg-primary p-1 rounded-full text-sm text-white px-2'>
-        Upgrade you plan at just 69.9₹/mo !!!</h2>
+        {!userSubscription ? <h2 className='bg-primary p-1 rounded-full text-sm text-white px-2'>
+        Upgrade you plan at just 999₹/mo !!!</h2> :
+        <h2 className='bg-primary p-1 rounded-full text-sm font-bold text-white px-2'>
+        Plus Subscriber ⭐</h2>
+        }
         {status==="authenticated" ? 
             <DropdownMenu>
             <DropdownMenuTrigger className="outline-none">
