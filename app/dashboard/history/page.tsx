@@ -17,7 +17,7 @@ export interface _History{
     createdAt:string
 }
 
-export function History() {
+function History() {
 
     const [HistoryList, setHistoryList]= React.useState<_History[]>()
     React.useEffect(()=>{
