@@ -61,10 +61,12 @@ const Usage = () => {
           {totalUsage}/{totalCredits} credits used
         </h2>
       </div>
+      <Link href={'/dashboard/billing'}>
       <Button variant={"secondary"} className="w-full my-3 text-primary">
-        <Link href={'/dashboard/billing'}>Upgrade</Link>
+        Upgrade
         
       </Button>
+      </Link>
     </div>
   );
 };

@@ -58,9 +58,10 @@ function billing() {
       handler: async (res: any) => {
         console.log(res);
         if (res) {
-          SaveSubcription(res?.razorpay_payment_id);
-          setUserSubscription(true);
-          setTotalUsage(0)
+          SaveSubcription(res?.razorpay_payment_id).then(()=> {
+            setUserSubscription(true);
+            setTotalUsage(0)
+          });
         }
         setLoading(false);
       },
@@ -156,7 +157,7 @@ function billing() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> 50+ Content Templates </span>
+                <span className="text-gray-700"> 15+ Content Templates </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -221,7 +222,7 @@ function billing() {
               <p className="mt-2 sm:mt-4">
                 <strong className="text-3xl font-bold text-gray-900 sm:text-4xl">
                   {" "}
-                  9.99${" "}
+                  999₹{" "}
                 </strong>
 
                 <span className="text-sm font-medium text-gray-700">
@@ -247,7 +248,7 @@ function billing() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> 1,00,000 Words/Month </span>
+                <span className="text-gray-700"> 50,000 Words/Month </span>
               </li>
 
               <li className="flex items-center gap-1">
@@ -266,7 +267,7 @@ function billing() {
                   />
                 </svg>
 
-                <span className="text-gray-700"> 50+ Template Access </span>
+                <span className="text-gray-700"> 15+ Template Access </span>
               </li>
 
               <li className="flex items-center gap-1">
